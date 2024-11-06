@@ -1,10 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const orderSchema = new mongoose.Schema({
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-    quantity: { type: Number, required: true },
-    orderDate: { type: Date, default: Date.now },
-    status: { type: String, enum: ['Pending', 'Completed', 'Cancelled'], default: 'Pending' }
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true },
+  category: { type: String, required: true },
+  inStock: { type: Number, required: true, default: 0 },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+const Product = mongoose.model('Product', productSchema);
+
+export default Product;

@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json()); // Middleware to parse JSON
 
 // Connect to MongoDB using the URI from the .env file
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/mydatabase')
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch((error) => console.error('MongoDB connection error:', error));
 
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
